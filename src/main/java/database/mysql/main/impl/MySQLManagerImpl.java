@@ -1,13 +1,8 @@
-package database.mysql.impl;
+package database.mysql.main.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import database.mysql.MySQLManager;
 import database.mysql.model.JDBCModel;
+import database.mysql.main.MySQLManager;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +40,7 @@ public class MySQLManagerImpl implements MySQLManager {
 
         jdbcModel.db = "citron_kids_manager";
         jdbcModel.host = "localhost";
-        jdbcModel.pass = "";
+        jdbcModel.pass = "mk871396";
         jdbcModel.port = "3306";
         jdbcModel.user = "root";
 
@@ -166,19 +161,6 @@ public class MySQLManagerImpl implements MySQLManager {
         } catch (SQLException e) {
             e.fillInStackTrace();
         }
-    }
-
-    @Override
-    public String escapeStringForMySQL(String str) {
-        return str.replace("\\", "\\\\")
-                .replace("\b", "\\b")
-                .replace("\n", "\\n")
-                .replace("\r", "\\r")
-                .replace("\t", "\\t")
-                .replace("\\x1A", "\\Z")
-                .replace("\\x00", "\\0")
-                .replace("'", "\\'")
-                .replace("\"", "\\\"");
     }
 
     public void setIsDebugMode(boolean isDebugMode) {

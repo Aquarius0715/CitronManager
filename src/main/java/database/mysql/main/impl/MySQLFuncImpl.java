@@ -1,6 +1,6 @@
-package database.mysql.impl;
+package database.mysql.main.impl;
 
-import database.mysql.MySQLFunc;
+import database.mysql.main.MySQLFunc;
 import database.mysql.model.JDBCModel;
 
 import java.sql.Connection;

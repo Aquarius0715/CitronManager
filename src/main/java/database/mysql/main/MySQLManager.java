@@ -1,4 +1,4 @@
-package database.mysql;
+package database.mysql.main;
 
 import database.mysql.model.JDBCModel;
 
@@ -13,5 +13,4 @@ public interface MySQLManager {
     boolean execute(String query);
     ResultSet query(String query);
     void close();
-    String escapeStringForMySQL(String str);
 }

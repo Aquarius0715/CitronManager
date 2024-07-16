@@ -1,4 +1,4 @@
 package com.citronkids.citronkidsmanager.facade;
 
-public interface StudentResisterConfirmPage {
+public interface StudentResisterFailedPageFacade {
 }

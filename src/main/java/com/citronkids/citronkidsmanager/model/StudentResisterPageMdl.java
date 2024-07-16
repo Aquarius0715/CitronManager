@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class StudentResisterPageMdl implements Serializable {
     private static final long serialVersionUID = 1L;
-    private int studentId = 0;
+    private String studentId = "";
     private String studentLastName = "";
     private String studentFirstName = "";
     private String studentLastNameKana = "";
@@ -28,7 +28,7 @@ public class StudentResisterPageMdl implements Serializable {
     private String apartmentNumber = "";
     private String detail = "";
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
     public String getBirthday() {
@@ -67,7 +67,7 @@ public class StudentResisterPageMdl implements Serializable {
     public void setLastNameKana(String lastNameKana) {
         this.studentLastNameKana = lastNameKana;
     }
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 

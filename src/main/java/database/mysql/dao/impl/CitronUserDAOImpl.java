@@ -1,15 +1,16 @@
 package database.mysql.dao.impl;
 
+import database.mysql.logic.impl.MySQLLogicImpl;
+import database.mysql.main.impl.MySQLManagerImpl;
 import database.mysql.dao.CitronUserDAO;
 import database.mysql.dto.CitronUserDTO;
-import database.mysql.impl.MySQLManagerImpl;
-import org.springframework.security.core.parameters.P;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CitronUserDAOImpl implements CitronUserDAO {
+    MySQLLogicImpl mySQLLogic = new MySQLLogicImpl();
     @Override
     public ArrayList<CitronUserDTO> loadAllUsers() {
         MySQLManagerImpl mySQLManager = new MySQLManagerImpl("loadAllUsers");
@@ -35,11 +36,10 @@ public class CitronUserDAOImpl implements CitronUserDAO {
     @Override
     public CitronUserDTO loadUserByUsername(String username) {
         MySQLManagerImpl mySQLManager = new MySQLManagerImpl("loadUserByUsername");
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM citron_users WHERE username = '");
-        sql.append(mySQLManager.escapeStringForMySQL(username));
-        sql.append("';");
-        ResultSet resultSet = mySQLManager.query(sql.toString());
+        String sql = "SELECT * FROM citron_users WHERE username = " +
+                mySQLLogic.escapeString(username) +
+                ";";
+        ResultSet resultSet = mySQLManager.query(sql);
         CitronUserDTO citronUserDTO = null;
         try {
             if (resultSet.next()) {
@@ -62,11 +62,10 @@ public class CitronUserDAOImpl implements CitronUserDAO {
     @Override
     public String loadPasswordByUsername(String username) {
         MySQLManagerImpl mySQLManager = new MySQLManagerImpl("loadPasswordByUsername");
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT password FROM citron_users WHERE username = '");
-        sql.append(mySQLManager.escapeStringForMySQL(username));
-        sql.append("';");
-        ResultSet resultSet = mySQLManager.query(sql.toString());
+        String sql = "SELECT password FROM citron_users WHERE username = " +
+                mySQLLogic.escapeString(username) +
+                ";";
+        ResultSet resultSet = mySQLManager.query(sql);
         try {
             if (resultSet.next()) {
                 return resultSet.getString("password");
@@ -82,13 +81,12 @@ public class CitronUserDAOImpl implements CitronUserDAO {
     @Override
     public int countUsersByUsernameAndPassword(String username, String password) {
         MySQLManagerImpl mySQLManager = new MySQLManagerImpl("countUsersByUsernameAndPassword");
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT username FROM citron_users WHERE username = '");
-        sql.append(mySQLManager.escapeStringForMySQL(username));
-        sql.append("' AND '");
-        sql.append(mySQLManager.escapeStringForMySQL(password));
-        sql.append("';");
-        ResultSet resultSet = mySQLManager.query(sql.toString());
+        String sql = "SELECT username FROM citron_users WHERE username = " +
+                mySQLLogic.escapeString(username) +
+                " AND " +
+                mySQLLogic.escapeString(password) +
+                ";";
+        ResultSet resultSet = mySQLManager.query(sql);
         int recordCount = 0;
         try {
             while (resultSet.next()) {

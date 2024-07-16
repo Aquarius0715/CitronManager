@@ -3,6 +3,7 @@ package com.citronkids.citronkidsmanager.logic.impl;
 import com.citronkids.citronkidsmanager.logic.StudentResisterPageLogic;
 import com.citronkids.citronkidsmanager.model.StudentResisterPageMdl;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -226,14 +227,14 @@ public class StudentResisterPageLogicImpl implements StudentResisterPageLogic {
         Matcher matcher = pattern.matcher(removeSymbol(zipCode));
         return !matcher.find();
     }
-    private String removeSymbol(String number) {
+    private @NotNull String removeSymbol(@NotNull String number) {
         return number.replaceAll("-", "")
                 .replaceAll("\\(", "")
                 .replaceAll("\\)", "")
                 .replaceAll(" ", "");
     }
 
-    private String hiraganaToKatakana(String str) {
+    private @NotNull String hiraganaToKatakana(String str) {
         StringBuilder sb = new StringBuilder(str);
         for (int i = 0; i < sb.length(); i++) {
             char c = sb.charAt(i);
