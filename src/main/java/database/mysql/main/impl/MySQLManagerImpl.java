@@ -40,11 +40,9 @@ public class MySQLManagerImpl implements MySQLManager {
 
         jdbcModel.db = "citron_kids_manager";
         jdbcModel.host = "localhost";
-        jdbcModel.pass = "mk871396";
+        jdbcModel.pass = "";
         jdbcModel.port = "3306";
         jdbcModel.user = "root";
-
-
     }
 
     @Override

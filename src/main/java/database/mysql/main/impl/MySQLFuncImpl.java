@@ -24,10 +24,12 @@ public class MySQLFuncImpl implements MySQLFunc {
             url.append(jdbcModel.port);
             url.append("/");
             url.append(jdbcModel.db);
-            url.append("?useSSL=false");
+            url.append("?allowPublicKeyRetrieval=true&useSSL=false");
             //url = new StringBuilder("jdbc:mysql://localhost:3306/citron_kids_manager");
+            //conn = DriverManager.getConnection(url.toString(), jdbcModel.user, jdbcModel.pass);
             conn = DriverManager.getConnection(url.toString(), jdbcModel.user, jdbcModel.pass);
         } catch (SQLException e) {
+            e.printStackTrace();
             System.err.println("Could not connect to MySQL server, error code: " + e.getErrorCode());
         } catch (ClassNotFoundException e) {
             System.err.println("JDBC Driver was not found in this machine.");
